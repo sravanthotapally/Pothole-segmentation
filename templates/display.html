@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .legend .potholes { background-color: red; }
+        .legend .cracks { background-color: green; }
+        
+        .btn-match-legend {
+            padding: 1.5rem 2.25rem;
+            font-size: 1.25rem;
+        }
+
+        .container {
+            max-width: 1400px; /* max-width of the card container*/
+        }
+
+        .card {
+            margin: 20px; /* margin around cards*/
+            padding: 20px; /* padding inside cards*/
+        }
+
+        .card-img-top {
+            height: auto;
+            max-height: 400px; /*max-height for images*/
+            width: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container mt-5">
+    <div class="row">
+
+        <!-- Original Image Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">Original Image</div>
+                <img src="{{ url_for('uploaded_file', filename=original_image) }}" class="card-img-top" alt="Original Image">
+                <div class="card-body d-flex align-items-end">
+                    <a href="/" class="btn btn-primary btn-block btn-match-legend">Upload New Image</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Predicted Mask Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">Predicted Mask</div>
+                <img src="{{ url_for('uploaded_file', filename=mask) }}" class="card-img-top" alt="Predicted Mask">
+                <div class="card-body">
+                    <h5 class="card-title">Legend</h5>
+                    <div class="legend">
+                        <span class="legend-color potholes"></span>
+                        <span>Potholes</span>
+                    </div>
+                    <div class="legend">
+                        <span class="legend-color cracks"></span>
+                        <span>Cracks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

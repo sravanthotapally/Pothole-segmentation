@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .title {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 50px;
+            font-size: 5rem;
+        }
+
+        .custom-file-label,
+
+        .btn {
+            font-size: 1.25rem;
+            height: auto;
+            padding: .75rem 1.25rem;
+        }
+
+        .custom-file-input {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="title">Pothole Segmentation Project</div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" id="customFile" name="file" onchange="updateFilename()">
+                    <label class="custom-file-label" for="customFile">Choose image</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Upload</button> 
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateFilename() {
+        var fileInput = document.getElementById('customFile');
+        var filename = fileInput.files[0].name;
+        fileInput.nextElementSibling.innerHTML = filename;
+    }
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
