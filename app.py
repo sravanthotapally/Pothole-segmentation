@@ -6,7 +6,7 @@ import os
 import torch
 # from torchvision.io import read_image
 from PIL import Image
-from torchvision.utils import save_image
+# from torchvision.utils import save_image
 from flask import Flask, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 from potholes_utils import UNet, SegNet, data_transforms, decode_mask
@@ -76,7 +76,8 @@ def process_image(input_path, output_path):
     unet_preds_raw = unet_model(image.unsqueeze(0))
     unet_preds_1d = unet_preds_raw.argmax(axis=1).squeeze(0)
     unet_mask = decode_mask(unet_preds_1d)
-    save_image(unet_mask.float(), output_path)
+    # save_image(unet_mask.float(), output_path)
+    Image.fromarray(unet_mask.numpy().astype(np.uint8).transpose(1, 2, 0)).save(output_path)
 
 if __name__ == '__main__':
     app.run(debug=True)
