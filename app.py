@@ -4,8 +4,9 @@
 
 import os
 import torch
-# from torchvision.io import read_image
 from PIL import Image
+import numpy as np
+# from torchvision.io import read_image
 # from torchvision.utils import save_image
 from flask import Flask, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
@@ -70,12 +71,12 @@ def uploaded_file(filename):
 def process_image(input_path, output_path):
     # Your model code to process the image
     # For example, it might load the image, predict and save the segmented output
-    image = Image.open(input_path) / 255.0
+    image = Image.open(input_path)
     image = data_transforms(image)
 
     unet_preds_raw = unet_model(image.unsqueeze(0))
     unet_preds_1d = unet_preds_raw.argmax(axis=1).squeeze(0)
-    unet_mask = decode_mask(unet_preds_1d)
+    unet_mask = decode_mask(unet_preds_1d).float()
     # save_image(unet_mask.float(), output_path)
     Image.fromarray(unet_mask.numpy().astype(np.uint8).transpose(1, 2, 0)).save(output_path)
 
