@@ -3,6 +3,7 @@ import torchvision
 from torchvision import transforms
 
 from torch import nn
+import numpy as np
 from torchvision.ops import Conv2dNormActivation
 
 
@@ -231,6 +232,7 @@ class SegNet(nn.Module):
 
 data_transforms = transforms.Compose([
     transforms.Resize([320, 512], interpolation=torchvision.transforms.InterpolationMode.NEAREST),
+    transforms.ToTensor()
 ])
 
 def decode_mask(mask_1d):
