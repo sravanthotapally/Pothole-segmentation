@@ -81,4 +81,4 @@ def process_image(input_path, output_path):
     Image.fromarray(unet_mask.numpy().astype(np.uint8).transpose(1, 2, 0)).save(output_path)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
